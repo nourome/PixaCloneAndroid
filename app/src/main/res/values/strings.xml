@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">PixaCloneAndroid</string>
+    <string name="cat_animals">Animals</string>
+    <string name="cat_background">Backgrounds</string>
+    <string name="cat_building">Buildings</string>
+    <string name="cat_business">Business</string>
+    <string name="cat_computer">Computer</string>
+    <string name="cat_education">Education</string>
+    <string name="cat_fashion">Fashion</string>
+    <string name="cat_feelings">Feelings</string>
+    <string name="cat_food">Food</string>
+    <string name="cat_health">Health</string>
+    <string name="cat_industry">Industry</string>
+    <string name="cat_music">Music</string>
+    <string name="cat_nature">Nature</string>
+    <string name="cat_people">People</string>
+    <string name="cat_places">Places</string>
+    <string name="cat_religion">religion</string>
+    <string name="cat_science">science</string>
+    <string name="cat_sport">Sport</string>
+    <string name="cat_transportation">Transportation</string>
+    <string name="cat_travel">Travel</string>
+</resources>
