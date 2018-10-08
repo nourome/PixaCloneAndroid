@@ -18,7 +18,6 @@ class CellAdapter(private val mContext: Context, private val cells: List<Pair<St
 
         lateinit var  cellView: View
 
-
         if (convertView == null) {
             val layoutInflater  = LayoutInflater.from(mContext);
             cellView = layoutInflater.inflate(R.layout.category_cell_layout, null);

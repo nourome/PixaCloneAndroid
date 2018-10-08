@@ -22,7 +22,6 @@ import com.google.gson.Gson
 import noro.me.pixacloneandroid.helpers.VolleySingleton
 
 
-typealias IndexPath = Pair<Int,Int>
 
 class EditorViewModel(private val app: Application): AndroidViewModel(app){
 
@@ -34,7 +33,6 @@ class EditorViewModel(private val app: Application): AndroidViewModel(app){
         get() {
             if (photos.size > 0) {
                 val min = photos.size - PixaBayAPI.MaxFetchPerPage
-                //val max =  photos.size - 1
                 val range = Array<Int>(PixaBayAPI.MaxFetchPerPage ) {it + min}
                 return range.map {
                     photos[it]
@@ -43,23 +41,6 @@ class EditorViewModel(private val app: Application): AndroidViewModel(app){
                 return listOf()
             }
         }
-
-
-    var loadedItemsUrl:List<String> = listOf()
-        get() {
-            if (photos.size > 0) {
-                val min = photos.size - PixaBayAPI.MaxFetchPerPage
-                val max =  photos.size
-                val range = Array<Int>(max){it + min}
-                return range.map {
-                    photos[it].previewURL ?: ""
-                }
-
-            } else {
-                return listOf()
-            }
-        }
-
 
     var pageNumber: Int
         get() {
@@ -71,10 +52,6 @@ class EditorViewModel(private val app: Application): AndroidViewModel(app){
 
         }
 
-
-    fun presentImage(indexIndex: IndexPath) {
-        //collectionCellDelegate?.didSelect(photo: photos[indexIndex.item])
-    }
 
     fun loadPhotos(latest: Boolean = false) : Observable<ResponseStatus> {
         return Observable.create {
@@ -97,7 +74,6 @@ class EditorViewModel(private val app: Application): AndroidViewModel(app){
                 }else {
                     observer.onNext(ResponseStatus.Cached)
                     observer.onComplete()
-                    // ImagePrefetcher.init(urls: self.loadedItemsUrl).start()
                 }
             } else {
                 requestPhotos(url,latest).subscribe({

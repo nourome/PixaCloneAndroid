@@ -69,8 +69,8 @@ class CategoryCollectionModel: PixaCollectionModelProtocol {
         get() = null
         set(newValue) {
             newValue.let{
-                if (it is PhotosCategory) {
-                    parameters[PixaBayAPI.Keys.Category] = it.category
+                if (it is String) {
+                    parameters[PixaBayAPI.Keys.Category] = it
                 }
             }
             field = newValue

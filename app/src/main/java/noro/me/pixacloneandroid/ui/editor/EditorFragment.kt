@@ -21,28 +21,31 @@ import noro.me.pixacloneandroid.model.PixaPhotoModel
 import noro.me.pixacloneandroid.model.ResponseStatus
 import noro.me.pixacloneandroid.ui.adapters.CollectionRecyclerAdapter
 import noro.me.pixacloneandroid.ui.adapters.OnPhotoSelectedInterface
+import noro.me.pixacloneandroid.ui.adapters.RecyclerViewHelper
 import noro.me.pixacloneandroid.ui.imageViewer.ImageViewerFragment
 
 
 class EditorFragment: Fragment(), OnPhotoSelectedInterface {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var collectionAdapter: CollectionRecyclerAdapter
-    private var stopPrefetching = false
-    private lateinit var flexboxLayoutManager: FlexboxLayoutManager
+    //private lateinit var recyclerView: RecyclerView
+    //private lateinit var collectionAdapter: CollectionRecyclerAdapter
+    //private var stopPrefetching = false
+    //private lateinit var flexboxLayoutManager: FlexboxLayoutManager
+    private lateinit var recyclerViewHelper: RecyclerViewHelper
 
     companion object {
         fun newInstance() = EditorFragment()
     }
 
-    private lateinit var viewModel: EditorViewModel
+    //private lateinit var viewModel: EditorViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view =  inflater.inflate(R.layout.collection_fragment, container, false)
 
-        recyclerView = view.findViewById(R.id.collection_recycler_view)
+        recyclerViewHelper = RecyclerViewHelper(context!!, this, view.findViewById(R.id.collection_recycler_view))
+        //recyclerView = view.findViewById(R.id.collection_recycler_view)
 
-        flexboxLayoutManager = FlexboxLayoutManager(context).apply {
+        /*flexboxLayoutManager = FlexboxLayoutManager(context).apply {
             flexWrap = FlexWrap.WRAP
             flexDirection = FlexDirection.ROW
             alignItems = AlignItems.STRETCH
@@ -50,7 +53,6 @@ class EditorFragment: Fragment(), OnPhotoSelectedInterface {
         val density = context!!.resources.displayMetrics.density
         collectionAdapter = CollectionRecyclerAdapter(arrayListOf(), density)
         collectionAdapter.fragment = this
-        flexboxLayoutManager.findLastCompletelyVisibleItemPosition()
 
         recyclerView.apply {
             layoutManager = flexboxLayoutManager
@@ -68,7 +70,7 @@ class EditorFragment: Fragment(), OnPhotoSelectedInterface {
                 }
             }
         })
-
+*/
         return view
     }
 
@@ -76,29 +78,30 @@ class EditorFragment: Fragment(), OnPhotoSelectedInterface {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(EditorViewModel::class.java)
-        viewModel.model = EditorCollectionModel()
-        viewModel.model?.data = null
-        loadPhotosAsync()
+        recyclerViewHelper.viewModel = ViewModelProviders.of(this).get(EditorViewModel::class.java)
+        recyclerViewHelper.viewModel.model = EditorCollectionModel()
+        recyclerViewHelper.viewModel.model?.data = null
+
+        recyclerViewHelper.loadPhotosAsync()
 
     }
 
     override fun onItemSelected(position: Int) {
-        //loadPhotosAsync()
+
         val bundle = Bundle()
-        bundle.putSerializable("pixa",viewModel.photos[position])
+        bundle.putSerializable("pixa",recyclerViewHelper.viewModel.photos[position])
 
         fragmentManager?.beginTransaction()?.apply {
             val imageViewerFragment =  ImageViewerFragment.newInstance()
             imageViewerFragment.arguments = bundle
-            replace(android.R.id.content, imageViewerFragment)
+            add(android.R.id.content, imageViewerFragment)
             addToBackStack(null)
             setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             commit()
         }
 
     }
-
+/*
     private fun loadPhotosAsync() {
 
         viewModel.loadPhotos().observeOn(AndroidSchedulers.mainThread()).subscribe({
@@ -121,4 +124,5 @@ class EditorFragment: Fragment(), OnPhotoSelectedInterface {
         }, {
         })
     }
+    */
 }

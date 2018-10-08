@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.cell_image_view.view.*
 import noro.me.pixacloneandroid.R
 import noro.me.pixacloneandroid.model.PixaPhotoModel
 import com.google.android.flexbox.FlexboxLayoutManager
+import noro.me.pixacloneandroid.ui.collection.CollectionFragment
 import noro.me.pixacloneandroid.ui.editor.EditorFragment
 import noro.me.pixacloneandroid.ui.imageViewer.ImageViewerFragment
 import noro.me.pixacloneandroid.ui.start.StartFragment
@@ -42,14 +43,13 @@ class CollectionRecyclerAdapter(val photos: ArrayList<PixaPhotoModel>, val dp: F
         holder.itemView.setOnClickListener {
             if (fragment is EditorFragment) {
                 (fragment as EditorFragment).onItemSelected(position)
+            } else if (fragment is CollectionFragment) {
+                (fragment as CollectionFragment).onItemSelected(position)
             }
         }
 
 
     }
-
-
-
 
 
     class CellHolder(v: View) : RecyclerView.ViewHolder(v) {

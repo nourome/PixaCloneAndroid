@@ -22,7 +22,7 @@ enum class PhotosCategory(val value: Int, val image: Int, val category: String) 
     Sports(R.string.cat_sport, R.drawable.sports, "sports"),
     Transportation(R.string.cat_transportation, R.drawable.transportation, "transportation"),
     Travel(R.string.cat_travel, R.drawable.travel, "travel"),
-    Business(R.string.cat_business,R.drawable.business, "Business"),
+    Business(R.string.cat_business,R.drawable.business, "business"),
     Music(R.string.cat_music, R.drawable.music, "music")
 
     //static let list: [PhotosCategory] = [Fashion, Nature, Backgrounds, Science, Education,  People, Feelings, Religion, Health, Places, Buildings, Animals, Industry, Food, Computer, Sports, Transportation, Travel, Business, Music]
