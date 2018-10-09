@@ -8,4 +8,4 @@ The app was developed using Android Jetpack new MVVM architecture, Kotlin, React
 
 Released under MIT license
 
-<img src="https://github.com/nour7/PixaClone/blob/master/screens.jpg" width="1200">
+<img src="https://github.com/nour7/PixaCloneAndroid/blob/master/screens.jpg" width="1200">
