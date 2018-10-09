@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PixaCloneAndroid</string>
+    <string name="app_name">PixaClone</string>
     <string name="cat_animals">Animals</string>
     <string name="cat_background">Backgrounds</string>
     <string name="cat_building">Buildings</string>
