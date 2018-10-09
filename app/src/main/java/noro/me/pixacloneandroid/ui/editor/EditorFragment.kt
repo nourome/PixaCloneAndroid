@@ -27,50 +27,17 @@ import noro.me.pixacloneandroid.ui.imageViewer.ImageViewerFragment
 
 class EditorFragment: Fragment(), OnPhotoSelectedInterface {
 
-    //private lateinit var recyclerView: RecyclerView
-    //private lateinit var collectionAdapter: CollectionRecyclerAdapter
-    //private var stopPrefetching = false
-    //private lateinit var flexboxLayoutManager: FlexboxLayoutManager
     private lateinit var recyclerViewHelper: RecyclerViewHelper
 
     companion object {
         fun newInstance() = EditorFragment()
     }
 
-    //private lateinit var viewModel: EditorViewModel
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view =  inflater.inflate(R.layout.collection_fragment, container, false)
 
         recyclerViewHelper = RecyclerViewHelper(context!!, this, view.findViewById(R.id.collection_recycler_view))
-        //recyclerView = view.findViewById(R.id.collection_recycler_view)
 
-        /*flexboxLayoutManager = FlexboxLayoutManager(context).apply {
-            flexWrap = FlexWrap.WRAP
-            flexDirection = FlexDirection.ROW
-            alignItems = AlignItems.STRETCH
-        }
-        val density = context!!.resources.displayMetrics.density
-        collectionAdapter = CollectionRecyclerAdapter(arrayListOf(), density)
-        collectionAdapter.fragment = this
-
-        recyclerView.apply {
-            layoutManager = flexboxLayoutManager
-            adapter = collectionAdapter
-            setHasFixedSize(true)
-        }
-
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                val totalItemCount = recyclerView!!.layoutManager.itemCount
-                if (!stopPrefetching && totalItemCount == flexboxLayoutManager.findLastCompletelyVisibleItemPosition() + 1) {
-                    stopPrefetching = true
-                    loadPhotosAsync()
-                }
-            }
-        })
-*/
         return view
     }
 
@@ -101,28 +68,5 @@ class EditorFragment: Fragment(), OnPhotoSelectedInterface {
         }
 
     }
-/*
-    private fun loadPhotosAsync() {
 
-        viewModel.loadPhotos().observeOn(AndroidSchedulers.mainThread()).subscribe({
-
-            when(it) {
-                ResponseStatus.Failed -> {
-                    stopPrefetching = true
-
-                }
-                else -> {
-                    collectionAdapter.photos.addAll(viewModel.loadedItems)
-                    stopPrefetching = false
-                    collectionAdapter.notifyDataSetChanged()
-                     }
-
-        }
-        },{
-            stopPrefetching = true
-            collectionAdapter.notifyDataSetChanged()
-        }, {
-        })
-    }
-    */
 }

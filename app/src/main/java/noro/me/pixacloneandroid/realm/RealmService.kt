@@ -3,8 +3,6 @@ package noro.me.pixacloneandroid.realm
 import com.google.gson.Gson
 import io.realm.Realm
 import noro.me.pixacloneandroid.model.PixaPhotoModel
-import noro.me.pixacloneandroid.model.PixaResponse
-import java.net.URL
 import java.util.*
 import kotlin.collections.ArrayList
 

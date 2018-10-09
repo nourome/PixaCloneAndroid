@@ -57,11 +57,9 @@ class EditorViewModel(private val app: Application): AndroidViewModel(app){
         return Observable.create {
             pageNumber += 1
             val observer = it
-            //todo: check model forcing !!
             val url =  PixaBayAPI.buildRequestURL(model?.parameters, latest)
 
            if (url != null){
-               val requestUrl = URL(url)
 
             val cached = RealmService.cache(url!!)
 
@@ -106,22 +104,19 @@ class EditorViewModel(private val app: Application): AndroidViewModel(app){
                             single.onSuccess(ResponseStatus.Failed)
                         }
                         hits.let {
-                            //todo hits is saved as string , converting back will be hard
                             RealmService.save(url, hits!!)
                             photos.addAll(hits!!)
                             if (photos.size <= PixaBayAPI.MaxFetchPerPage) {
                                 single.onSuccess(ResponseStatus.Success)
                             } else {
                                 single.onSuccess(ResponseStatus.Success)
-                                //Todo preload images
-                                //ImagePrefetcher.init(urls: self.loadedItemsUrl).start()
+                                // You can prefetch images here since this call occur during scroll
                             }
 
                         }
 
                     },Response.ErrorListener(){
                 single.onSuccess(ResponseStatus.Failed)
-                //single.onError(it)
             })
 
             queue.add(gsonRequest)

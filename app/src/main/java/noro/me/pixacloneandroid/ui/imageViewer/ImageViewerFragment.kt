@@ -32,8 +32,7 @@ class ImageViewerFragment: Fragment() {
         if(pixaPhoto != null) {
             Picasso.get().load(pixaPhoto!!.webformatURL).into(photoView)
         } else {
-            //todo set not found image!
-            photoView.setImageResource(R.drawable.backgrounds)
+            photoView.setImageResource(R.drawable.pixa_not_found)
         }
         return view
     }

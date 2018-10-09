@@ -61,7 +61,6 @@ class PixaBayAPI {
            try{
                gsonResponse = gson.fromJson(response,   Array<PixaPhotoModel>::class.java)
            }catch (e: JsonParseException) {
-               //Todo check this works
                throw Exception("failed in parsing Json")
            }
             return gsonResponse

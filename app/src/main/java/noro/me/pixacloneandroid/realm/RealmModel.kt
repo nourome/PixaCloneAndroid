@@ -5,12 +5,6 @@ import io.realm.annotations.PrimaryKey
 import java.util.*
 
 
-enum class RealmError {
-    NewRecordFailed,
-    UpdateRecordFailed,
-    RealmInstanceIsNil
-}
-
 open class ApiResponse: RealmObject() {
     @PrimaryKey var url: String = ""
     var response: String = ""
