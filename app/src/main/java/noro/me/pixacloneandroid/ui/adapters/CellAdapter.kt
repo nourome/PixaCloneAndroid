@@ -23,7 +23,7 @@ class CellAdapter(private val mContext: Context, private val cells: List<Pair<St
 
         icons = cells.map { BitmapFactory.decodeResource(mContext.resources,
                 it.second, options) }
-       
+
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {

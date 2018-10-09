@@ -19,7 +19,7 @@ class CollectionFragment: Fragment(), OnPhotoSelectedInterface {
 
     private lateinit var recyclerViewHelper: RecyclerViewHelper
     private var category: String? = null
-    private var search: String? = null
+    private var keyword: String? = null
 
     companion object {
         fun newInstance() = CollectionFragment()
@@ -28,7 +28,7 @@ class CollectionFragment: Fragment(), OnPhotoSelectedInterface {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view =  inflater.inflate(R.layout.collection_fragment, container, false)
         category = arguments?.getString("category")
-        search = arguments?.getString("search")
+        keyword = arguments?.getString("keyword")
 
         recyclerViewHelper = RecyclerViewHelper(context!!, this, view.findViewById(R.id.collection_recycler_view))
 
@@ -45,7 +45,7 @@ class CollectionFragment: Fragment(), OnPhotoSelectedInterface {
             recyclerViewHelper.viewModel.model?.data = category
         }else {
             recyclerViewHelper.viewModel.model = SearchCollectionModel()
-            recyclerViewHelper.viewModel.model?.data = search
+            recyclerViewHelper.viewModel.model?.data = keyword
         }
         recyclerViewHelper.loadPhotosAsync()
 
