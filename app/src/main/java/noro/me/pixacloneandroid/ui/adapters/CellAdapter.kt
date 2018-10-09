@@ -12,30 +12,35 @@ import noro.me.pixacloneandroid.R
 
 class CellAdapter(private val mContext: Context, private val cells: List<Pair<String, Int>>): BaseAdapter() {
 
+    private var icons: List<Bitmap>
 
+
+    init {
+        val options = BitmapFactory.Options()
+        options.inJustDecodeBounds = false
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888
+        options.inSampleSize = 3
+
+        icons = cells.map { BitmapFactory.decodeResource(mContext.resources,
+                it.second, options) }
+       
+    }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         lateinit var  cellView: View
 
         if (convertView == null) {
-            val layoutInflater  = LayoutInflater.from(mContext);
+            val layoutInflater = LayoutInflater.from(mContext);
             cellView = layoutInflater.inflate(R.layout.category_cell_layout, null);
 
-            val options = BitmapFactory.Options()
-            options.inJustDecodeBounds = false
-            options.inPreferredConfig = Bitmap.Config.ARGB_8888
-            options.inSampleSize = 3
-
-
-            val icon = BitmapFactory.decodeResource(mContext.resources,
-                    cells[position].second, options)
-
-            cellView.cellImageView.setImageBitmap(icon)
-            cellView.cellNameText.text = cells[position].first
-        }else {
+        } else {
             cellView = convertView
         }
+
+        cellView.cellImageView.setImageBitmap(icons[position])
+        cellView.cellNameText.text = cells[position].first
+
 
         return cellView
     }
