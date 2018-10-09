@@ -1,4 +1,4 @@
-# PixaClone
+# PixaClone Android Kotlin
 
 Pixabay.com is great website for free stunning photos. This is a clone app for their Android app with similar UI design and features but without users accounts
 
