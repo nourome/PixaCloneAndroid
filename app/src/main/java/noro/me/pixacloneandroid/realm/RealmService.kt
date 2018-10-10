@@ -11,7 +11,7 @@ public class RealmService {
 
     companion object {
 
-        var lifePeriod : Long = 24 * 60 * 60
+        private var lifePeriod : Long = 24 * 60 * 60 * 1000
 
 
         fun save(request: String, response: ArrayList<PixaPhotoModel>) {
@@ -53,15 +53,14 @@ public class RealmService {
             var record = realm.where(ApiResponse::class.java).equalTo("url",request).findFirst()
 
             if (record != null) {
-
                 val period  = Date().time - record!!.date.time.toLong()
-                if (period > lifePeriod) {
+                if (period > lifePeriod &&  record!!.isValidResponse) {
                     realm.beginTransaction()
                     record!!.isValidResponse = false
                     realm.commitTransaction()
+                    return null
                 }
                 return record!!.response.toString()
-
             }
 
             return null

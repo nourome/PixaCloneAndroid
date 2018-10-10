@@ -35,7 +35,7 @@ class PixaBayAPI {
 
         const val MaxFetchPerPage = 150
         private const val api = "https://pixabay.com/api/"
-        private const val key = "183103-aa92344f89e7134a1a806f5b5"
+        private const val key = "[YOUR API KEY]"
 
         fun buildRequestURL(parameters: HashMap<Keys, String>?, latest: Boolean = false): String? {
 
